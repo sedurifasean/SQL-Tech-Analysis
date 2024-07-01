@@ -1,40 +1,60 @@
+-- Create a table
+CREATE TABLE acquisitions_update_2021 (
+    ID SERIAL PRIMARY KEY,
+    Parent_Company VARCHAR(255),
+    Acquisition_Year INT,
+    Acquisition_Month VARCHAR(50),
+    Acquired_Company VARCHAR(255),
+    Business VARCHAR(255),
+    Country VARCHAR(100),
+    Acquisition_Price VARCHAR(50),
+    Category VARCHAR(255),
+    Derived_Products VARCHAR(255)
+);
+
 -- How many acquisitions has each parent company made?
-SELECT "Parent Company", COUNT(*) AS "Total Acquisitions"
+SELECT parent_company, COUNT(*) AS total_acquisitions
 FROM acquisitions_update_2021
-GROUP BY "Parent Company"
-ORDER BY "Total Acquisitions" DESC;
+GROUP BY parent_company
+ORDER BY total_acquisitions DESC;
 
--- What is the trend of acquisitions over the years? Are there any peak years?
-SELECT "Acquisition Year", COUNT(*) AS "Total Acquisitions"
+-- Question: What is the trend of acquisitions over the years? Are there any peak years?
+-- Answer: 2014
+SELECT acquisition_year, COUNT(*) AS total_acquisition
 FROM acquisitions_update_2021
-GROUP BY "Acquisition Year"
-ORDER BY "Acquisition Year";
+GROUP BY acquisition_year
+ORDER BY acquisition_year;
 
--- Which month sees the highest number of acquisitions across all years?
-SELECT "Acquisition Month", COUNT(*) AS "Total Acquisitions"
+-- Question: Which month sees the highest number of acquisitions across all years?
+-- Answer: June
+SELECT acquisition_month, COUNT(*) AS total_acquisition
 FROM acquisitions_update_2021
-GROUP BY "Acquisition Month"
-ORDER BY "Total Acquisitions" DESC;
+GROUP BY acquisition_month
+ORDER BY total_acquisition DESC;
 
--- Which business categories have the most acquired companies?
-SELECT "Business", COUNT(*) AS "Total Acquisitions"
+-- Question: Which business categories have the most acquired companies?
+-- Answer: Software, Computer software, Video games 
+SELECT business, COUNT(*) AS total_acquisitions
 FROM acquisitions_update_2021
-GROUP BY "Business"
-ORDER BY "Total Acquisitions" DESC;
+GROUP BY business
+ORDER BY total_acquisitions DESC;
 
--- In which countries are the most acquisitions made?
-SELECT "Country", COUNT(*) AS "Total Acquisitions"
+-- Question: In which countries are the most acquisitions made?
+-- Answer: United States, United Kingdom, Canada
+SELECT country, COUNT(*) AS total_acquisitions
 FROM acquisitions_update_2021
-GROUP BY "Country"
-ORDER BY "Total Acquisitions" DESC;
+GROUP BY country
+ORDER BY total_acquisitions DESC;
 
--- Which parent company has the highest total acquisition price, and what is the total amount?
+-- Question: Which parent company has the highest total acquisition price, and what is the total amount?
+-- Answer: 
 SELECT "Parent Company", SUM("Acquisition Price") AS "Total Acquisition Price"
 FROM acquisitions_update_2021
 GROUP BY "Parent Company"
 ORDER BY "Total Acquisition Price" DESC;
 
--- What is the average acquisition price per year, and how does it vary across different years?
+-- Question: What is the average acquisition price per year, and how does it vary across different years?
+-- Answer: 
 SELECT "Acquisition Year", AVG("Acquisition Price") AS "Average Acquisition Price"
 FROM acquisitions_update_2021
 GROUP BY "Acquisition Year"
