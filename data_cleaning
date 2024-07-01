@@ -1,0 +1,47 @@
+-- Remove duplicates 
+DELETE FROM acquisitions_update_2021
+WHERE ctid NOT IN (
+    SELECT MIN(ctid)
+    FROM acquisitions_update_2021
+    GROUP BY id, parent_company, acquisition_year, acquisition_month, 
+             acquired_company, business, country, acquisition_price, 
+             category, derived_products
+);
+
+-- Handle missing values
+UPDATE acquisitions_update_2021
+SET parent_company = COALESCE(parent_company, 'Unknown'),
+    acquisition_year = COALESCE(acquisition_year, 0),
+    acquisition_month = COALESCE(acquisition_month, 'Unknown'),
+    acquired_company = COALESCE(acquired_company, 'Unknown'),
+    business = COALESCE(business, 'Unknown'),
+    country = COALESCE(country, 'Unknown'),
+    acquisition_price = COALESCE(NULLIF(acquisition_price, '-'), '0'),
+    category = COALESCE(category, 'Unknown'),
+    derived_products = COALESCE(derived_products, 'Unknown');
+
+-- Normalize text data
+UPDATE acquisitions_update_2021
+SET parent_company = LOWER(TRIM(parent_company)),
+    acquisition_month = LOWER(TRIM(acquisition_month)),
+    acquired_company = LOWER(TRIM(acquired_company)),
+    business = LOWER(TRIM(business)),
+    country = LOWER(TRIM(country)),
+    category = LOWER(TRIM(category)),
+    derived_products = LOWER(TRIM(derived_products));
+
+-- Convert acquisition_price to numeric where possible
+ALTER TABLE acquisitions_update_2021
+ADD COLUMN acquisition_price_numeric NUMERIC;
+
+UPDATE acquisitions_update_2021
+SET acquisition_price_numeric = CAST(acquisition_price AS NUMERIC)
+WHERE acquisition_price ~ '^[0-9]+(\.[0-9]+)?$';
+
+UPDATE acquisitions_update_2021
+SET acquisition_price_numeric = 0
+WHERE acquisition_price_numeric IS NULL;
+
+-- Correct erroneous data
+DELETE FROM acquisitions_update_2021
+WHERE acquisition_year <= 0;
