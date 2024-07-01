@@ -1,0 +1,41 @@
+-- How many acquisitions has each parent company made?
+SELECT "Parent Company", COUNT(*) AS "Total Acquisitions"
+FROM acquisitions_update_2021
+GROUP BY "Parent Company"
+ORDER BY "Total Acquisitions" DESC;
+
+-- What is the trend of acquisitions over the years? Are there any peak years?
+SELECT "Acquisition Year", COUNT(*) AS "Total Acquisitions"
+FROM acquisitions_update_2021
+GROUP BY "Acquisition Year"
+ORDER BY "Acquisition Year";
+
+-- Which month sees the highest number of acquisitions across all years?
+SELECT "Acquisition Month", COUNT(*) AS "Total Acquisitions"
+FROM acquisitions_update_2021
+GROUP BY "Acquisition Month"
+ORDER BY "Total Acquisitions" DESC;
+
+-- Which business categories have the most acquired companies?
+SELECT "Business", COUNT(*) AS "Total Acquisitions"
+FROM acquisitions_update_2021
+GROUP BY "Business"
+ORDER BY "Total Acquisitions" DESC;
+
+-- In which countries are the most acquisitions made?
+SELECT "Country", COUNT(*) AS "Total Acquisitions"
+FROM acquisitions_update_2021
+GROUP BY "Country"
+ORDER BY "Total Acquisitions" DESC;
+
+-- Which parent company has the highest total acquisition price, and what is the total amount?
+SELECT "Parent Company", SUM("Acquisition Price") AS "Total Acquisition Price"
+FROM acquisitions_update_2021
+GROUP BY "Parent Company"
+ORDER BY "Total Acquisition Price" DESC;
+
+-- What is the average acquisition price per year, and how does it vary across different years?
+SELECT "Acquisition Year", AVG("Acquisition Price") AS "Average Acquisition Price"
+FROM acquisitions_update_2021
+GROUP BY "Acquisition Year"
+ORDER BY "Acquisition Year";
