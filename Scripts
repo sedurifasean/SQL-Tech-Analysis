@@ -48,14 +48,14 @@ ORDER BY total_acquisitions DESC;
 
 -- Question: Which parent company has the highest total acquisition price, and what is the total amount?
 -- Answer: 
-SELECT "Parent Company", SUM("Acquisition Price") AS "Total Acquisition Price"
+SELECT parent_company, SUM(acquisition_price) AS total_acquisition_price
 FROM acquisitions_update_2021
-GROUP BY "Parent Company"
-ORDER BY "Total Acquisition Price" DESC;
+GROUP BY parent_company
+ORDER BY total_acquisition_price DESC;
 
 -- Question: What is the average acquisition price per year, and how does it vary across different years?
 -- Answer: 
-SELECT "Acquisition Year", AVG("Acquisition Price") AS "Average Acquisition Price"
+SELECT acquisition_year, AVG(acquisition_price) AS average_acquisition_price
 FROM acquisitions_update_2021
-GROUP BY "Acquisition Year"
-ORDER BY "Acquisition Year";
+GROUP BY acquisition_year
+ORDER BY acquisition_year;
