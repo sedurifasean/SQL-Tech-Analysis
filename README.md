@@ -17,19 +17,11 @@ The dataset used for this analysis is acquisitions_update_2021.csv. Below is a b
 - Derived Products: Products derived from the acquisition
 
 ## **Objectives** <br />
-1. Data Cleaning: Scripts in this section handle missing values, remove duplicates, and standardize data formats.
+1. Data Cleaning: Remove duplicates, handle missing values, normalize text data, convert acquisition_price to numberic, correct erroneous data
 
 2. Data Exploration: Exploratory data analysis scripts provide descriptive statistics and initial insights into the dataset.
 
-3. Aggregation: Aggregation scripts summarize data by various dimensions, such as monthly trends and department-wise summaries.
-
-4. Joins: Joining scripts combine data from the main dataset with additional tables to provide a richer dataset for analysis.
-
-5. Window Functions: Advanced analytical scripts use window functions to calculate running totals, moving averages, and other metrics.
-
-6. Data Analysis: Data analysis scripts answer specific business questions, such as identifying high-cost patients and analyzing patient visit trends.
-
-7. Table Schema Creation: Creating table with specified columns and variables. 
+3. Data Analysis: Data analysis scripts answer specific business questions, such as identifying yearly acquisition trends and geographic distribution of acquisitions. 
 
 ## **Key Findings** <br />
 - 
