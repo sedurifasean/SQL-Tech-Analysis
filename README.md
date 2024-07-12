@@ -24,7 +24,9 @@ The dataset used for this analysis is acquisitions_update_2021.csv. Below is a b
 3. Data Analysis: Data analysis scripts answer specific business questions, such as identifying yearly acquisition trends and geographic distribution of acquisitions. 
 
 ## **Key Findings** <br />
-- 
+- Software companies have been the top acquired companies.
+- The United States have by far the greatest number of acquisitions compared to any other countries.
+- Microsoft, Google and IBM are the top three parent companies with the most number of acquisitions.
 
 ## **Conclusion** <br />
 The project highlights the importance of data-driven decision-making in the business environment. By leveraging SQL for comprehensive data analysis, businesses can uncover critical patterns and trends that inform strategic initiatives and enhance operational efficiency. This portfolio project showcases my proficiency in SQL and my ability to apply data analysis techniques to real-world datasets, providing actionable insights and contributing to informed decision-making processes.
